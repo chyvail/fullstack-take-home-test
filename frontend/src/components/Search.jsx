@@ -8,7 +8,7 @@ import { IoMdSearch } from "react-icons/io";
 export default function Search() {
   const theme = useTheme();
   return (
-    <Box display="flex" borderRadius="50px" width="40%" border={2}>
+    <Box display="flex" borderRadius="50px" width="100%" border={2}>
       <IconButton
         type="button"
         sx={{ margin: "8px", background: theme.palette.primary.dark }}

@@ -5,6 +5,8 @@ import CssBaseline from "@mui/material/CssBaseline";
 import App from "./App";
 import { lightTheme, darkTheme } from "./theme";
 import { AppContext } from "./contexts/appContext";
+import { ApolloProvider } from "@apollo/client";
+import { client } from "./utils/graghQLSetup";
 
 const Root = () => {
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -17,7 +19,9 @@ const Root = () => {
     <ThemeProvider theme={isDarkMode ? darkTheme : lightTheme}>
       <CssBaseline />
       <AppContext.Provider value={{ toggleTheme, isDarkMode }}>
-        <App />
+        <ApolloProvider client={client}>
+          <App />
+        </ApolloProvider>
       </AppContext.Provider>
     </ThemeProvider>
   );

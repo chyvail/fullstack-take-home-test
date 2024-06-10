@@ -15,10 +15,19 @@ const customPalette = {
   },
 };
 
+const customTypography = {
+  h3: {
+    fontSize: 34,
+  },
+};
+
 const lightTheme = createTheme({
   palette: {
     mode: "light",
     ...customPalette,
+  },
+  typography: {
+    ...customTypography,
   },
 });
 
@@ -26,6 +35,9 @@ const darkTheme = createTheme({
   palette: {
     mode: "dark",
     ...customPalette,
+  },
+  typography: {
+    ...customTypography,
   },
 });
 

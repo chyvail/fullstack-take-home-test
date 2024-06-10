@@ -14,14 +14,23 @@ export default function Hero({ title, caption }) {
       justifyContent="center"
       alignItems="center"
       my={5}
+      mx={5}
     >
       <Typography
         variant="h3"
-        sx={{ color: theme.palette.primary.dark, fontWeight: 800 }}
+        sx={{
+          color: theme.palette.primary.dark,
+          fontWeight: 800,
+          textAlign: "center",
+        }}
       >
         {title}
       </Typography>
-      <Typography variant="h6" sx={{ fontWeight: 600 }} my={3}>
+      <Typography
+        variant="h6"
+        sx={{ fontWeight: 600, textAlign: "center" }}
+        my={3}
+      >
         {caption}
       </Typography>
       <Search />
