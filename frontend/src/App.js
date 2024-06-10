@@ -1,14 +1,18 @@
 import "./App.css";
-import Button from "@mui/material/Button";
-import elloLogo from "./logo.svg";
+import Hero from "./components/Hero";
+import Navbar from "./components/Navbar";
 
-const App = ({ toggleTheme }) => (
-  <div>
-    <Button variant="contained" onClick={toggleTheme}>
-      Toggle Theme
-    </Button>
-    <img src={elloLogo} alt="ello Logo" />
-  </div>
-);
+const App = () => {
+  return (
+    <>
+      <Navbar />
+      <Hero
+        title="Empowering Young Minds"
+        caption="We believe that fostering a love for reading is essential for a child's
+        academic and personal growth."
+      />
+    </>
+  );
+};
 
 export default App;
