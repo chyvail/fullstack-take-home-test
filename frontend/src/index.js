@@ -4,6 +4,7 @@ import { ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import App from "./App";
 import { lightTheme, darkTheme } from "./theme";
+import { AppContext } from "./contexts/appContext";
 
 const Root = () => {
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -15,7 +16,9 @@ const Root = () => {
   return (
     <ThemeProvider theme={isDarkMode ? darkTheme : lightTheme}>
       <CssBaseline />
-      <App toggleTheme={toggleTheme} />
+      <AppContext.Provider value={{ toggleTheme, isDarkMode }}>
+        <App />
+      </AppContext.Provider>
     </ThemeProvider>
   );
 };
