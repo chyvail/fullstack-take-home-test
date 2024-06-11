@@ -4,6 +4,7 @@ import { GET_BOOKS } from "../graphql/queries";
 import { MdFavoriteBorder, MdFavorite } from "react-icons/md";
 import Search from "./Search";
 import { useState } from "react";
+import Loader from "./Loader";
 
 // BookList Component
 export default function Booklist() {
@@ -34,7 +35,7 @@ export default function Booklist() {
 
   console.log("favorites is", displayedBooks);
 
-  if (loading) return "Loading...";
+  if (loading) return <Loader />;
   if (error) return `Error! ${error.message}`;
 
   return (
