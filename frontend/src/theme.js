@@ -19,6 +19,18 @@ const customTypography = {
   h3: {
     fontSize: 34,
   },
+  h5: {
+    fontSize: 20,
+  },
+  h6: {
+    fontSize: 14,
+  },
+  body1: {
+    fontSize: 13,
+  },
+  body2: {
+    fontSize: 12,
+  },
 };
 
 const lightTheme = createTheme({
