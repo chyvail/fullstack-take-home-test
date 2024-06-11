@@ -1,5 +1,6 @@
 import "./App.css";
 import Booklist from "./components/Booklist";
+import Footer from "./components/Footer";
 import Hero from "./components/Hero";
 import Navbar from "./components/Navbar";
 
@@ -13,6 +14,7 @@ const App = () => {
         academic and personal growth."
       />
       <Booklist />
+      <Footer />
     </>
   );
 };

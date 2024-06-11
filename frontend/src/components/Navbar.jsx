@@ -6,12 +6,13 @@ import { useContext } from "react";
 import { AppContext } from "../contexts/appContext";
 import { useTheme } from "@mui/material";
 
-// Navbar Component
+// Navbar Component with light-dark mode toggle functionality
 
 export default function Navbar() {
   const { toggleTheme, isDarkMode } = useContext(AppContext);
   const theme = useTheme();
 
+  // re-usable icon props
   const iconProps = {
     size: 25,
     onClick: toggleTheme,

@@ -2,7 +2,7 @@ import { useTheme } from "@emotion/react";
 import { Box, Typography } from "@mui/material";
 import React from "react";
 
-// Hero Component
+// Hero Component with dynamic title and caption
 
 export default function Hero({ title, caption }) {
   const theme = useTheme();

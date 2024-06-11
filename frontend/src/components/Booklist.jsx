@@ -1,17 +1,35 @@
 import { useQuery } from "@apollo/client";
-import { Box, Chip, Typography } from "@mui/material";
+import { Box, Chip, Typography, Button } from "@mui/material";
 import { GET_BOOKS } from "../graphql/queries";
 import { MdFavoriteBorder, MdFavorite } from "react-icons/md";
 import Search from "./Search";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Loader from "./Loader";
 import { toast, Toaster } from "react-hot-toast";
-// BookList Component
+import { useTheme } from "@emotion/react";
+
 export default function Booklist() {
-  const { loading, error, data } = useQuery(GET_BOOKS);
+  const { loading, error, data } = useQuery(GET_BOOKS); // Apollo Client hook
+
+  // useState hooks
+
   const [favorites, setFavorites] = useState([]);
   const [displayedBooks, setDisplayedBooks] = useState([]);
   const [showFavorites, setShowFavorites] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const booksPerPage = 12;
+
+  const theme = useTheme();
+
+  // Set displayed books on data fetch
+
+  useEffect(() => {
+    if (data) {
+      setDisplayedBooks(data.books.slice(0, booksPerPage));
+    }
+  }, [data]);
+
+  // Toggle favorite status and show toast notifications
 
   const handleClick = (book) => {
     setFavorites((prevFavorites) => {
@@ -25,14 +43,23 @@ export default function Booklist() {
     });
   };
 
+  // Handle chip click to show all books or favorites
+
   const handleChipClick = (type) => {
     if (type === "all") {
-      setDisplayedBooks(data.books);
+      setDisplayedBooks(data.books.slice(0, currentPage * booksPerPage));
       setShowFavorites(false);
     } else {
       setDisplayedBooks(favorites);
       setShowFavorites(true);
     }
+  };
+
+  // Paginations
+
+  const loadMoreBooks = () => {
+    setCurrentPage((prevPage) => prevPage + 1);
+    setDisplayedBooks(data.books.slice(0, (currentPage + 1) * booksPerPage));
   };
 
   console.log("favorites is", displayedBooks);
@@ -83,7 +110,7 @@ export default function Booklist() {
           position: "relative",
         }}
       >
-        {(showFavorites ? favorites : data.books).map((book, index) => (
+        {(showFavorites ? favorites : displayedBooks).map((book, index) => (
           <Box item xs={4} key={index}>
             <Box
               component="img"
@@ -123,6 +150,20 @@ export default function Booklist() {
           </Box>
         ))}
       </Box>
+
+      {/* Load More Button */}
+
+      {!showFavorites && displayedBooks.length < data.books.length && (
+        <Box display="flex" justifyContent="center" mt={4}>
+          <Button
+            variant="contained"
+            onClick={loadMoreBooks}
+            sx={{ background: theme.palette.primary.dark }}
+          >
+            Load More
+          </Button>
+        </Box>
+      )}
       <Toaster position="top-center" reverseOrder={false} />
     </Box>
   );

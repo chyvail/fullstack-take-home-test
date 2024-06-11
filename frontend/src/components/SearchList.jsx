@@ -2,7 +2,7 @@ import { useTheme } from "@emotion/react";
 import { Box, Typography } from "@mui/material";
 import React from "react";
 
-// Search List
+// Search List Component
 
 export default function SearchList({ data }) {
   const theme = useTheme();
