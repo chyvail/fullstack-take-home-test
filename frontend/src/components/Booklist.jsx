@@ -5,7 +5,7 @@ import { MdFavoriteBorder, MdFavorite } from "react-icons/md";
 import Search from "./Search";
 import { useState } from "react";
 import Loader from "./Loader";
-
+import { toast, Toaster } from "react-hot-toast";
 // BookList Component
 export default function Booklist() {
   const { loading, error, data } = useQuery(GET_BOOKS);
@@ -16,8 +16,10 @@ export default function Booklist() {
   const handleClick = (book) => {
     setFavorites((prevFavorites) => {
       if (prevFavorites.some((fav) => fav.title === book.title)) {
+        toast.success(`Removed Book from Favorites`);
         return prevFavorites.filter((fav) => fav.title !== book.title);
       } else {
+        toast.success(`Added Book to Favorites`);
         return [...prevFavorites, book];
       }
     });
@@ -121,6 +123,7 @@ export default function Booklist() {
           </Box>
         ))}
       </Box>
+      <Toaster position="top-center" reverseOrder={false} />
     </Box>
   );
 }
