@@ -1,7 +1,6 @@
 import { useTheme } from "@emotion/react";
 import { Box, Typography } from "@mui/material";
 import React from "react";
-import Search from "./Search";
 
 // Hero Component
 
@@ -13,8 +12,8 @@ export default function Hero({ title, caption }) {
       flexDirection="column"
       justifyContent="center"
       alignItems="center"
-      my={5}
       mx={5}
+      mt={3}
     >
       <Typography
         variant="h3"
@@ -33,7 +32,6 @@ export default function Hero({ title, caption }) {
       >
         {caption}
       </Typography>
-      <Search />
     </Box>
   );
 }
